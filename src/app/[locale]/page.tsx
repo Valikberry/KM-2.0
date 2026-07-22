@@ -23,7 +23,6 @@ import { DownloadDesktopCTA } from "@/components/download/download-desktop-cta";
 import { StaticCommandLine } from "@/components/download/static-command-line";
 import { DiscordIcon } from "@/components/icons/wechat-icon";
 import { JsonLd } from "@/components/layout/json-ld";
-import { PetGallery } from "@/components/pets/pet-gallery";
 import { PetSprite } from "@/components/pets/pet-sprite";
 import { SurprisePetCard } from "@/components/pets/surprise-pet-card";
 import { SiteFooter } from "@/components/site-footer";
@@ -112,14 +111,6 @@ export default async function Home({
         name: "Crafter Station",
         url: "https://crafter.run",
       },
-      potentialAction: {
-        "@type": "SearchAction",
-        target: {
-          "@type": "EntryPoint",
-          urlTemplate: `${SITE_URL}/?q={search_term_string}#gallery`,
-        },
-        "query-input": "required name=search_term_string",
-      },
     },
     {
       "@context": "https://schema.org",
@@ -198,28 +189,12 @@ export default async function Home({
                 <DiscordIcon className="size-4" />
                 {t("joinDiscord")}
               </DiscordLink>
-            ) : (
-              <Link
-                href="#gallery"
-                className="inline-flex h-12 items-center justify-center gap-2 rounded-full border border-border-base bg-surface/70 px-6 text-sm font-medium text-foreground backdrop-blur transition hover:bg-surface"
-              >
-                {t("browseGallery")}
-              </Link>
-            )}
+            ) : null}
           </div>
         </div>
       </section>
 
       <FeaturedCollections collections={collections} isZh={isZh} />
-
-      <section
-        id="gallery"
-        className="mx-auto flex w-full max-w-[1440px] flex-col gap-8 px-5 py-12 md:px-8 md:py-16"
-      >
-        {totalPets > 0 ? (
-          <PetGallery initial={initialSearch} totalPets={totalPets} />
-        ) : null}
-      </section>
 
       <SiteFooter />
     </main>
